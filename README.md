@@ -6,7 +6,7 @@ It extracts Facebook page and per-post narratives, aggregates overall themes, an
 
 1. Scrape Facebook data (Apify)
 
-2. Analyze individual posts (LLM)
+2. Analyze individual posts (LLM: Groq)
 
 3. Aggregate post narratives
 
