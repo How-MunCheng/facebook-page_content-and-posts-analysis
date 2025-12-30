@@ -19,9 +19,11 @@ Analyze each Facebook post individually.
 
 ```bash
 python analyze_per_post.py
+```
 
 Step 2 — Chunk-level Post Aggregation
 
 Aggregate per-post results in small chunks to avoid token limits.
-
+```bash
 python overall_chunk_analysis.py
+```
