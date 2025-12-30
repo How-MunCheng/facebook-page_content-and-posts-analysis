@@ -1,61 +1,27 @@
 # facebook-page_content-and-posts-analysis
-Scraping and LLM-based analysis of Facebook Page content and posts.
+This project analyzes Facebook Page identity and recent post content using LLM-based analysis.
+It extracts Facebook page and per-post narratives, aggregates overall themes, and compares declared page identity with actual posting behavior.
 
+## Data Source
 
-- Public Facebook pages and posts were collected using Apify’s Facebook Pages Scraper actor.
-- Scraping configurations and pipeline logic are included in this repository.
+- Facebook Pages Scraper (Apify Actor)
+  - Facebook Pages Scraper: https://console.apify.com/actors/4Hv5RhChiaDk6iwad
+  - Facebook Posts Scraper: https://console.apify.com/actors/KoJrdxJCTtpon81KY
+- Input files:
+  - facebook_page.csv
+  - facebook_post.csv
 
-*Raw scraped data is excluded to comply with data governance and platform policies.
+## Analysis Pipeline (Run Order)
 
+Step 1 — Per-post LLM Analysis  
 
-Pipeline Overview:
+Analyze each Facebook post individually.
 
-Apify Facebook Scraper
+```bash
+python analyze_per_post.py
 
--Facebook Pages Scraper: https://console.apify.com/actors/4Hv5RhChiaDk6iwad
+Step 2 — Chunk-level Post Aggregation
 
--Facebook Posts Scraper: https://console.apify.com/actors/KoJrdxJCTtpon81KY
+Aggregate per-post results in small chunks to avoid token limits.
 
-        ↓
-
-raw CSV (facebook_page.csv, facebook_post.csv)
-
-        ↓
-
-per-post LLM analysis
-
-        ↓
-
-per_post_analysis.csv
-
-        ↓
-
-chunked overall post analysis (LLM-safe)
-        
-        ↓
-
-overall_chunks.json
-
-        ↓
-
-overall_analysis.json
-
-        ↓
-
-Page LLM analysis
-
-        ↓
-
-page_analysis.json
-
-        ↓
-
-Comparative LLM analysis
-
-        ↓
-
-comparative_analysis.json
-
-        ↓
-
-Visualization
+python overall_chunk_analysis.py
