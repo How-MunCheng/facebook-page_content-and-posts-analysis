@@ -1,61 +1,94 @@
 # facebook-page_content-and-posts-analysis
-Scraping and LLM-based analysis of Facebook Page content and posts.
+This project analyzes Facebook Page identity and recent post content using LLM-based analysis.
+It extracts Facebook page and per-post narratives, aggregates overall themes, and compares declared page identity with actual posting behavior.
 
+## Scrapper and Analyzer Pipeline Overview 
 
-- Public Facebook pages and posts were collected using Apify’s Facebook Pages Scraper actor.
-- Scraping configurations and pipeline logic are included in this repository.
+1. Scrape Facebook data (Apify)
 
-*Raw scraped data is excluded to comply with data governance and platform policies.
+2. Analyze individual posts (LLM)
 
+3. Aggregate post narratives
 
-Pipeline Overview:
+4. Analyze page identity
 
-Apify Facebook Scraper
+5. Compare page vs posts
 
--Facebook Pages Scraper: https://console.apify.com/actors/4Hv5RhChiaDk6iwad
+6. Visualize results
 
--Facebook Posts Scraper: https://console.apify.com/actors/KoJrdxJCTtpon81KY
+## Data Source
 
-        ↓
+- Facebook Pages Scraper (Apify Actor)
+  - Facebook Pages Scraper: https://console.apify.com/actors/4Hv5RhChiaDk6iwad
+  - Facebook Posts Scraper: https://console.apify.com/actors/KoJrdxJCTtpon81KY
+- Input files:
+  - facebook_page.csv
+  - facebook_post.csv
 
-raw CSV (facebook_page.csv, facebook_post.csv)
+## Analysis Pipeline (Run Order)
 
-        ↓
+### Step 1 — Per-post LLM Analysis  
 
-per-post LLM analysis
-
-        ↓
+Analyze each Facebook post individually.
+```bash
+python analyze_per_post.py
+```
+Output:
 
 per_post_analysis.csv
 
-        ↓
 
-chunked overall post analysis (LLM-safe)
-        
-        ↓
+### Step 2 — Chunk-level Post Aggregation
+
+Aggregate per-post results in small chunks to avoid token limits.
+```bash
+python overall_chunk_analysis.py
+```
+Output:
 
 overall_chunks.json
 
-        ↓
+
+### Step 3 — Overall Post Analysis
+
+Merge chunk-level outputs into a single overall post summary.
+```bash
+python analyze_overall_posts.py
+```
+Output:
 
 overall_analysis.json
 
-        ↓
 
-Page LLM analysis
+### Step 4 — Page Identity Analysis
 
-        ↓
+Analyze the Facebook Page “About” and metadata using LLM.
+```bash
+python python analyze_page.py
+```
+Output:
 
 page_analysis.json
 
-        ↓
 
-Comparative LLM analysis
+### Step 5 — Page vs Post Comparative Analysis
 
-        ↓
+Compare declared page identity with actual posting behavior.
+```bash
+python comparative_analysis.py
+```
+Output:
 
 comparative_analysis.json
 
-        ↓
 
-Visualization
+### Step 6 — Visualization of Post Analysis
+
+Generate posting activity and content distribution plots.
+```bash
+python plot.py
+```
+
+Output:
+
+figures/weekly_posting_activity.png
