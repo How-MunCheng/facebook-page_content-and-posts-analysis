@@ -2,6 +2,20 @@
 This project analyzes Facebook Page identity and recent post content using LLM-based analysis.
 It extracts Facebook page and per-post narratives, aggregates overall themes, and compares declared page identity with actual posting behavior.
 
+## Scrapper and Analyzer Pipeline Overview 
+
+1. Scrape Facebook data (Apify)
+
+2. Analyze individual posts (LLM)
+
+3. Aggregate post narratives
+
+4. Analyze page identity
+
+5. Compare page vs posts
+
+6. Visualize results
+
 ## Data Source
 
 - Facebook Pages Scraper (Apify Actor)
