@@ -13,7 +13,7 @@ It extracts Facebook page and per-post narratives, aggregates overall themes, an
 
 ## Analysis Pipeline (Run Order)
 
-Step 1 — Per-post LLM Analysis  
+# Step 1 — Per-post LLM Analysis  
 
 Analyze each Facebook post individually.
 ```bash
@@ -23,7 +23,8 @@ Output:
 
 per_post_analysis.csv
 
-Step 2 — Chunk-level Post Aggregation
+
+# Step 2 — Chunk-level Post Aggregation
 
 Aggregate per-post results in small chunks to avoid token limits.
 ```bash
@@ -33,7 +34,8 @@ Output:
 
 overall_chunks.json
 
-Step 3 — Overall Post Analysis
+
+# Step 3 — Overall Post Analysis
 
 Merge chunk-level outputs into a single overall post summary.
 ```bash
@@ -43,7 +45,8 @@ Output:
 
 overall_analysis.json
 
-Step 4 — Page Identity Analysis
+
+# Step 4 — Page Identity Analysis
 
 Analyze the Facebook Page “About” and metadata using LLM.
 ```bash
@@ -53,7 +56,8 @@ Output:
 
 page_analysis.json
 
-Step 5 — Page vs Post Comparative Analysis
+
+# Step 5 — Page vs Post Comparative Analysis
 
 Compare declared page identity with actual posting behavior.
 ```bash
@@ -63,7 +67,8 @@ Output:
 
 comparative_analysis.json
 
-Step 6 — Visualization
+
+# Step 6 — Visualization
 
 Generate posting activity and content distribution plots.
 ```bash
